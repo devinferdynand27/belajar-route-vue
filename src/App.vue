@@ -1,6 +1,7 @@
 <template>
-  <NavbarComponent :idMenu="idMenu" :key="idMenu"/>
+  <NavbarComponent v-if="idMenu != 5" :idMenu="setMenu" :key="idMenu"/>
   <router-view @id-menu="setMenu($event)"/>
+
 </template>
 <script>
 import NavbarComponent from './components/NavbarComponent.vue';

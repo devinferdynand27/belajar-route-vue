@@ -6,7 +6,8 @@ import Kategori from "@/views/KategoriComponent.vue";
 import Subkategori from "@/views/SubkategoriComponent.vue";
 import Detail from "@/views/DetailComponent.vue";
 import Home from "@/views/HomeComponent.vue";
-
+import Login from '../components/LoginComponent.vue'
+import Notfound from '../components/NotfoundComponent.vue'
 const routes = [ 
   {
     path: "/", 
@@ -27,6 +28,14 @@ const routes = [
     path: "/produk",
     name: "Produk",
     component: Produk,
+    beforeEnter: (to, from, next) => {
+      const loggedinuser = localStorage.getItem('islogin')
+      if(loggedinuser == 'true'){
+        next();
+      }else{
+        next('/login');
+      }
+    }
   },
   {
     path: "/kategori",
@@ -45,7 +54,18 @@ const routes = [
     component: Subkategori,
     props:true
   },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    props:true
+  },
+  {
+    path: '/:pathMatch(.*)',
+    component: Notfound
+  }
 ];
+
 
 const router = createRouter({
   history: createWebHistory(),

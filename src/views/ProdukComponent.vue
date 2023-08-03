@@ -39,16 +39,14 @@ import { produk } from '@/assets/Produk.js'
 export default {
     setup(props,context){
         const state = reactive(produk['produk'])
-        
-    
-
+      
         const nama = (y) => {
           let  kategoriall = kategori.kategori.find(item => {
             return item.id == y
           })
           return kategoriall.nama
         }
-    
+
         onMounted(() => {
             context.emit("id-menu", 3);
         });
